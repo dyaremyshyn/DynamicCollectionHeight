@@ -13,6 +13,8 @@
 		CEAD8A1D29C7A13E001D58A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAD8A1B29C7A13E001D58A0 /* Main.storyboard */; };
 		CEAD8A1F29C7A140001D58A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAD8A1E29C7A140001D58A0 /* Assets.xcassets */; };
 		CEAD8A2229C7A140001D58A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAD8A2029C7A140001D58A0 /* LaunchScreen.storyboard */; };
+		CEAD8A2A29C7A3FC001D58A0 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD8A2929C7A3FC001D58A0 /* CollectionViewCell.swift */; };
+		CEAD8A2C29C7C942001D58A0 /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD8A2B29C7C942001D58A0 /* HeaderReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CEAD8A1E29C7A140001D58A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAD8A2129C7A140001D58A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAD8A2329C7A140001D58A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEAD8A2929C7A3FC001D58A0 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		CEAD8A2B29C7C942001D58A0 /* HeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				CEAD8A1E29C7A140001D58A0 /* Assets.xcassets */,
 				CEAD8A2029C7A140001D58A0 /* LaunchScreen.storyboard */,
 				CEAD8A2329C7A140001D58A0 /* Info.plist */,
+				CEAD8A2929C7A3FC001D58A0 /* CollectionViewCell.swift */,
+				CEAD8A2B29C7C942001D58A0 /* HeaderReusableView.swift */,
 			);
 			path = DynamicCollectionHeight;
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 			files = (
 				CEAD8A1A29C7A13E001D58A0 /* ViewController.swift in Sources */,
 				CEAD8A1629C7A13E001D58A0 /* AppDelegate.swift in Sources */,
+				CEAD8A2C29C7C942001D58A0 /* HeaderReusableView.swift in Sources */,
+				CEAD8A2A29C7A3FC001D58A0 /* CollectionViewCell.swift in Sources */,
 				CEAD8A1829C7A13E001D58A0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
