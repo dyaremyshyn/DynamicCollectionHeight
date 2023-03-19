@@ -88,5 +88,15 @@ class CollectionViewCell: UICollectionViewCell {
         underline.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         underline.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 16).isActive = true
         underline.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8).isActive = true
+        
+        answerLabel.topAnchor.constraint(equalTo: answerContainer.topAnchor).isActive = true
+        answerLabel.leadingAnchor.constraint(equalTo: answerContainer.leadingAnchor).isActive = true
+        answerLabel.trailingAnchor.constraint(equalTo: answerContainer.trailingAnchor).isActive = true
+        answerLabel.bottomAnchor.constraint(equalTo: answerContainer.bottomAnchor).isActive = true
+    }
+    
+    public func updateRow(item: FAQModel) {
+        questionLabel.text = item.question
+        answerLabel.text = item.answer
     }
 }
