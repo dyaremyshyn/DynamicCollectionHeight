@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         view.delegate = self
         view.backgroundColor = .white
         view.showsVerticalScrollIndicator = false
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.cellID)
         view.register(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.viewID)
         return view
@@ -41,7 +42,10 @@ class ViewController: UIViewController {
     private func addConstraints() {
         view.addSubview(collectionView)
         
-        
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     
@@ -64,6 +68,10 @@ extension ViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        return HeaderReusableView()
     }
 }
 
