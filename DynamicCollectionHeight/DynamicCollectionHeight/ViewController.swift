@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.dataSource = self
         view.delegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = .darkGray
         view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.cellID)
@@ -32,11 +32,12 @@ class ViewController: UIViewController {
     }()
     
     private var itemsList: [FAQModel] = []
+    private var headerDescription: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addConstraints()
         setDummyData()
+        addConstraints()
     }
 
     private func addConstraints() {
@@ -54,30 +55,41 @@ class ViewController: UIViewController {
         for _ in 1...10 {
             itemsList.append(FAQModel(question: "What is Lorem Ipsum?", answer: answer))
         }
+        
+        headerDescription = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.cellID, for: indexPath) as?  CollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.updateRow(item: itemsList[indexPath.row])
+        return cell
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return HeaderReusableView()
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.viewID, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
+        view.updateHeaderStrings(description: headerDescription)
+        return view
     }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+        cell.expandCollapseCell()
+        collectionView.performBatchUpdates(nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -85,10 +97,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.zero
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return CGSize(width: UIScreen.main.bounds.width, height: 100) }
+        return CGSize(width: UIScreen.main.bounds.width, height: cell.collapsed ? 100 : 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize.zero
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.viewID, for: IndexPath(row: 0, section: section)) as? HeaderReusableView else { return CGSize.zero }
+        view.updateHeaderStrings(description: headerDescription)
+        let size = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        return CGSize(width: size.width, height: size.height + 10)
     }
 }

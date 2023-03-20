@@ -10,7 +10,7 @@ import UIKit
 
 class CollapsibleView: UIView {
     
-    private var heightConstraint: NSLayoutConstraint
+    private var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
     public var collapsed: Bool {
         get { heightConstraint.isActive }
         set { heightConstraint.isActive = newValue }
@@ -18,6 +18,11 @@ class CollapsibleView: UIView {
 
     convenience init() {
         self.init()
+        setHeightConstraint()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setHeightConstraint()
     }
     
