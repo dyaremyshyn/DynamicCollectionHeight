@@ -15,8 +15,8 @@ class HeaderReusableView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = 0
-        label.text = "This is a dynamic header wwqeqeqeqeqeqeq"
-        label.font = .boldSystemFont(ofSize: 26)
+        label.text = "This is a dynamic header"
+        label.font = .boldSystemFont(ofSize: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -25,7 +25,7 @@ class HeaderReusableView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +35,7 @@ class HeaderReusableView: UICollectionReusableView {
         label.textColor = .white
         label.numberOfLines = 0
         label.text = "Below we have dynamic cell height"
-        label.font = .boldSystemFont(ofSize: 22)
+        label.font = .boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,10 +55,11 @@ class HeaderReusableView: UICollectionReusableView {
     }
 
     private func addConstraints() {
-        backgroundColor = .red
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(faqLabel)
+            
+        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
         
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true

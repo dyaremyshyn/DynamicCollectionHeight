@@ -97,8 +97,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return CGSize(width: UIScreen.main.bounds.width, height: 100) }
-        return CGSize(width: UIScreen.main.bounds.width, height: cell.collapsed ? 100 : 300)
+        let height:CGFloat = 50
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return CGSize(width: UIScreen.main.bounds.width, height: height) }
+        return CGSize(width: UIScreen.main.bounds.width, height: cell.collapsed ? height : 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

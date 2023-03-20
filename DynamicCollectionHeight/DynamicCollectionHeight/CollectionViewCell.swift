@@ -15,7 +15,7 @@ class CollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: 23)
+        label.font = .boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,6 +74,8 @@ class CollectionViewCell: UICollectionViewCell {
         
         answerContainer.addSubview(answerLabel)
         
+        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+
         collapsedImage.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         collapsedImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         collapsedImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
