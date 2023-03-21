@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = .zero
-        layout.headerReferenceSize = .zero
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.headerReferenceSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .vertical
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -89,6 +89,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
         cell.expandCollapseCell()
+        // Invalidate the collection view's layout to trigger a re-layout with the new size
+        collectionView.collectionViewLayout.invalidateLayout()
         collectionView.performBatchUpdates(nil)
     }
     
@@ -97,9 +99,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height:CGFloat = 50
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return CGSize(width: UIScreen.main.bounds.width, height: height) }
-        return CGSize(width: UIScreen.main.bounds.width, height: cell.collapsed ? height : 300)
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
