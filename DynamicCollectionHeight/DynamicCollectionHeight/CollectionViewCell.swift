@@ -94,7 +94,7 @@ class CollectionViewCell: UICollectionViewCell {
         underline.translatesAutoresizingMaskIntoConstraints = false
         addSubview(underline)
         
-        underline.topAnchor.constraint(equalTo: answerContainer.bottomAnchor, constant: 16).isActive = true
+        underline.topAnchor.constraint(equalTo: answerContainer.bottomAnchor, constant: 8).isActive = true
         underline.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         underline.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         underline.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8).isActive = true
